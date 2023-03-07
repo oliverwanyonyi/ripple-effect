@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .btn {
+        background: #202020;
+        color: #ffffff;
+        font-size: 15px;
+        cursor: pointer;
+        padding: 12px 15px;
+        position: relative;
+        border-radius: 8px;
+        font-weight: 600;
+        overflow: hidden;
+      }
+      .btn .overlay {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: #ffffff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+        animation: blink 0.5s linear infinite;
+      }
+
+      @media (max-width: 768px) {
+        .btn {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 0.5;
+        }
+        100% {
+      transform: scale(4);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque deserunt placeat commodi ipsum cum maiores rerum aliquam magni vel quae suscipit, voluptates in, dicta laudantium nemo, itaque quas non quisquam quidem officia blanditiis alias. Non nobis provident a aut nam!
+    <button class="btn">Submit</button>
+  </body>
+  <script>
+    const btn = document.querySelector('.btn'
+    )
+    btn.addEventListener('click',(e)=>{
+        const overlay = document.createElement("span");
+    overlay.classList.add("overlay");
+    console.log(e.target.offsetLeft,e.clientX)
+    let x = e.clientX - e.target.offsetLeft;
+    let y = e.clientY - e.target.offsetTop;
+    overlay.style.left = x + "px";
+    overlay.style.top = y + "px";
+    e.target.appendChild(overlay);
+   
+    setTimeout(() => {
+      overlay.remove();
+    }, 500);
+    })
+  </script>
+</html>
